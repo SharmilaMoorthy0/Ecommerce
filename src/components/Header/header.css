@@ -1,0 +1,123 @@
+
+#navbar{
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    padding: .5rem 5rem;
+    box-shadow: 5px 5px 20px rgb(0, 0,0,0.5);
+    background-color: black;
+}
+.navbar .navbar-brand{
+    font-size: 25px;
+    font-weight: 800;
+    color: #29f700!important;
+}
+#navbarSupportedContent a{
+color: #fff;
+border-bottom: 2px solid transparent;
+}
+#navbarSupportedContent a:hover{
+    border-bottom: 2px solid #29f700 ;
+}
+.loginbtn{
+    background-color: #29f700;
+    width: 5rem;
+    border-radius: 15px;
+    color: #fff;
+}
+.cart-btn{
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.button1{
+    background: green!important;
+    color: #fff!important;
+    box-shadow: 1px solid rgba(0,0,0,0.3);
+    border: 1px solid green;
+    width: 10%;
+    padding: 10px;
+    border-radius: 15px;
+
+}
+.button2{
+    background:red!important;
+    color: #fff!important;
+    box-shadow: 1px solid rgba(0,0,0,0.3);
+    border: 1px solid red;
+    width: 8%;
+    padding: 10px;
+    border-radius: 15px;
+
+}
+.menu_btn{
+    width: 2.5rem;
+    height: 2.5rem;
+    color: #fff;
+    line-height: 0;
+    display: flex;
+    align-items: end;
+    justify-content: flex-end;
+    border-radius: 0.4rem;
+    border: none;
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.4s ease; 
+    background:green;
+}
+@media (max-width:769px) {
+    .menu_btn{
+     display:block
+     
+    }
+    .nav_content ul{
+        display: none;
+    }
+    .button1{
+        background: green!important;
+        color: #fff!important;
+        box-shadow: 1px solid rgba(0,0,0,0.3);
+        border: 1px solid green;
+        width: 100%;
+        padding: 10px;
+        border-radius: 15px;
+    
+    }
+    .button2{
+        background:red!important;
+        color: #fff!important;
+        box-shadow: 1px solid rgba(0,0,0,0.3);
+        border: 1px solid red;
+        width: 50%;
+        padding: 10px;
+        border-radius: 15px;
+    
+    }
+    
+}
+@media   (max-width:992px){
+
+    .button2{
+        background:red!important;
+        color: #fff!important;
+        box-shadow: 1px solid rgba(0,0,0,0.3);
+        border: 1px solid red;
+        width: 50%;
+        padding: 10px;
+        border-radius: 15px;
+    
+    }
+    .button1{
+        background: green!important;
+        color: #fff!important;
+        box-shadow: 1px solid rgba(0,0,0,0.3);
+        border: 1px solid green;
+        width: 50%;
+        padding: 10px;
+        border-radius: 15px;
+     
+    
+    }
+}

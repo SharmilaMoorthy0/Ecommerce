@@ -1,0 +1,42 @@
+.left-cart{
+    border: 1px solid black;
+
+}
+
+.cart-list{
+    display: flex;
+}
+
+.cart-img{
+    width: 100px;
+    height: 100px;
+}
+.total div>div{
+    padding: 0px 6px;
+}
+.total h6{
+    color: #2a2a2a;
+}
+hr{
+    background: #b8b7b3;
+    width: 100%;
+    height: 1px;
+}
+.cartTotal{
+    background-color: #fd8c66;
+     border: none;
+   color: #fff;
+   padding: 6px 0px;
+}
+.border{
+    border: 1px solid #b6b2b2;
+
+}
+.pay-btn{
+    background-color: #0f7124;
+    color: white;
+    padding: 8px 100px;
+    margin: 10px 0px;
+    border: none;
+    border-radius: 5px;
+}

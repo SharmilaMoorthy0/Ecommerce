@@ -1,0 +1,45 @@
+.HomeSection {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#HomeSection {
+   flex-direction: column;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, .8)), url('../Images/plants.jpg');
+    background-size: cover;
+    background-position: center;
+    object-fit: cover;
+}
+
+#HomeSection h1 {
+    font-size: 100px;
+    color: #fff;
+    letter-spacing: 3px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 0px #CCC,
+        0px 2px 0px #CCC,
+        0px 3px 0px #CCC,
+        0px 4px 0px #CCC,
+        0px 5px 0px #CCC,
+        0px 6px 0px #CCC,
+        0px 7px 0px #CCC;
+}
+#HomeSection p{
+    color: #fff;
+    font-size: 18px;
+    font-family: cursive;
+}
+#HomeSection .input-group{
+    width: 40%;
+    height: 45px;
+}
+.login{
+    background: green!important;
+    color: #fff!important;
+    box-shadow: 2px 4px 5px rgba(0,0,0,0.3);
+
+}

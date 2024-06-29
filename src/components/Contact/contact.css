@@ -1,0 +1,27 @@
+#contact img{
+    height: 100%;
+}
+.box{
+   
+    width: 80%!important;
+    margin-top: 100px;
+}
+.form{
+    display: flex;
+    flex-direction: column;
+}
+.form input{
+    margin: 10px 0px;
+}
+.form textarea{
+    margin: 10px 0px;
+}
+.button{
+    background: green!important;
+    color: #fff!important;
+    box-shadow: 2px 4px 5px rgba(0,0,0,0.3);
+    border: 1px solid green;
+    width: 25%;
+    padding: 10px;
+
+}

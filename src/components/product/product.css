@@ -1,0 +1,26 @@
+.product-card{
+    background-color: bisque;
+    padding: 10px;
+}
+
+.add-btn{
+    background-color: orange;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    margin:0px 2px;
+}
+
+.buy{
+    background-color: rgb(255, 119, 0);
+    padding: 10px 30px;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    margin:0px 2px;
+}
+.input-group {
+    width: 70%;
+    height: 45px;
+}
