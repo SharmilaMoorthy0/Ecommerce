@@ -31,7 +31,7 @@ function App() {
   const [cartData,setCartData]=useState([])
   let token=localStorage.getItem("myapptoken")
   const fetchCartData = ()=>{
-    axios.post('http://localhost:8000/all/cart','',{
+    axios.post('https://backend-t6li.onrender.com/all/cart','',{
       headers:{
         Authorization:localStorage.getItem("myapptoken")
       }

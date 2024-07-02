@@ -47,7 +47,7 @@ function CartItem({ fetchCartData }) {
     const totalAmount = cartList?.reduce((prev, curr) => prev + Number(curr?.Offerprice), 0).toFixed(2)
     const RemoveCart = (id, i) => {
        
-            axios.post('http://localhost:8000/remove/cart', { id: id }).then((res) => {
+            axios.post('https://backend-t6li.onrender.com/remove/cart', { id: id }).then((res) => {
                 if (res.data.status === 1) {
                     toast.success(res.data.message)
                     fetchCartData()

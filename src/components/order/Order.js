@@ -33,10 +33,10 @@ function Order() {
 
     let url = ""
     if (user?.role === "admin") {
-      url = "http://localhost:8000/admin/all/order"
+      url = "https://backend-t6li.onrender.com/admin/all/order"
     }
     else {
-      url = "http://localhost:8000/all/order"
+      url = "https://backend-t6li.onrender.com/all/order"
     }
     axios.post(url, {},
       {
@@ -80,7 +80,7 @@ function Order() {
 
   }
   const Deleteorder = (id) => {
-    axios.post("http://localhost:8000/remove/order", { id: Deleteid }, {
+    axios.post("https://backend-t6li.onrender.com/remove/order", { id: Deleteid }, {
       headers: {
         Authorization: localStorage.getItem("myapptoken")
       }
@@ -167,7 +167,7 @@ function Order() {
   const UpdateOrderAdmin = () => {
 
 
-    axios.post(`http://localhost:8000/edit/order/admin/${EditAdmin._id}`, EditAdmin, {
+    axios.post(`https://backend-t6li.onrender.com/edit/order/admin/${EditAdmin._id}`, EditAdmin, {
       headers: {
         Authorization: localStorage.getItem("myapptoken")
       }

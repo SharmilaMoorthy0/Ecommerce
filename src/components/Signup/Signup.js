@@ -33,7 +33,7 @@ function SignUp({ toggleLogin }) {
         }
         
 
-        axios.post("http://localhost:8000/user/signup", user).then((res) => {
+        axios.post("https://backend-t6li.onrender.com/user/signup", user).then((res) => {
             if (res.data.status === 1) {
                 toast.success(res.data.message)
                 toggleLogin()

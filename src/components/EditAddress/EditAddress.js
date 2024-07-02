@@ -20,7 +20,7 @@ function EditAddressEdit() {
       const handleUpdateOrder = () => {
 
 
-        axios.post(`http://localhost:8000/edit/order/address/${AddressEdit._id}`, { address: AddressEdit.address }, {
+        axios.post(`https://backend-t6li.onrender.com/edit/order/address/${AddressEdit._id}`, { address: AddressEdit.address }, {
           headers: {
             Authorization: localStorage.getItem("myapptoken")
           }

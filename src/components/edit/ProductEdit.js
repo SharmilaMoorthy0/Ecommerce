@@ -24,7 +24,7 @@ function ProductAdd() {
         setedits({ ...edits, [name]: event.target.value })
       }
       const handleUpdateProduct = () => {
-        axios.post(`http://localhost:8000/edit/product/${edits._id}`, edits, {
+        axios.post(`https://backend-t6li.onrender.com/edit/product/${edits._id}`, edits, {
           headers: {
             Authorization: localStorage.getItem("myapptoken")
           }

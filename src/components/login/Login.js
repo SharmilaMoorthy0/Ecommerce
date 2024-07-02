@@ -48,7 +48,7 @@ function Login({ toggleSignUp, closeLogin }) {
             return toast.error("Password Required")
         }
 
-        axios.post('http://localhost:8000/login/user', login).then((res) => {
+        axios.post('https://backend-t6li.onrender.com/login/user', login).then((res) => {
             if (res.data.status === 1) {
                 toast.success(res.data.message)
                 console.log(res.data.token)
