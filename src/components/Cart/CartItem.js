@@ -41,6 +41,8 @@ function CartItem({ fetchCartData }) {
     }
     const openCheckout = () => {
         navigate('/checkout')
+        localStorage.removeItem('buynow')
+        localStorage.removeItem('cart')
     }
     const totalAmount = cartList?.reduce((prev, curr) => prev + Number(curr?.Offerprice), 0).toFixed(2)
     const RemoveCart = (id, i) => {
@@ -75,7 +77,7 @@ function CartItem({ fetchCartData }) {
                         return <tr>
                             <td onClick={() => RemoveCart(list?._id)}><i class="fa fa-times" aria-hidden="true"></i></td>
                             <td><img className='' height={"62px"} src={list?.Image} /></td>
-                            <td><h5>{list?.productName}</h5></td>
+                            <td>{list?.productName}</td>
                             <td>${list?.Offerprice}</td>
                             
                             <td>${list?.Offerprice?.toFixed(2)}</td>

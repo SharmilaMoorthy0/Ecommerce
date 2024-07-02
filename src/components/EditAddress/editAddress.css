@@ -1,0 +1,12 @@
+.AddressEdit{
+    width: 50%;
+    margin: auto;
+}
+
+
+@media (max-width:480px){
+    .AddressEdit{
+        width: 100%;
+        margin: auto;
+    }
+}

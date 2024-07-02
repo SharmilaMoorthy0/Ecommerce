@@ -1,23 +1,21 @@
 import axios from 'axios'
-import { add } from 'date-fns/fp/add'
-import { id } from 'date-fns/locale'
+import { addDays, format } from 'date-fns'
+import './order.css'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
-import swal from 'sweetalert'
 
+import Select from 'react-select'
+export const statusoption = [
+  { value: "Shipped", label: "Shipped" },
+  { value: "Canceled", label: "Canceled" },
+  { value: "Delivered", label: "Delivered" },
+
+]
 function Order() {
-  const [address, setaddress] = useState({
-    Name: "",
-    Line1: "",
-    Line2: "",
-    City: "",
-    State: "",
-    Country: "",
-    Pincode: ""
-  })
 
+  const [Status, setStatus] = useState("")
   const navigate = useNavigate()
   const [orderlist, setorderlist] = useState([])
   const [Deletemodal, setDeletemodal] = useState(false)
@@ -99,34 +97,39 @@ function Order() {
       }
     }).catch((err) => { console.log(err) })
   }
+  const Edittoggle = (data) => {
+    localStorage.setItem('address', JSON.stringify(data))
+    navigate('/edit/address')
 
+  }
 
   const edittoggle = (data) => {
     setEditAdmin(data)
     setEditAddressChange(!EditAddressChange)
   }
-  const EditToggle = (data) => {
-    setEditAdmin(data)
-    setEditAdminModal(!EditAdminModal)
-  }
+  const addDaysToDate = (date) => {
+    return addDays(new Date(date), 5); // Add 5 days to the provided date
+  };
+
+  // Function to format date in a desired format (e.g., "yyyy-MM-dd")
+  const formatDate = (date) => {
+    return format(new Date(date), 'yyyy-MM-dd'); // Format date as needed
+  };
 
 
 
-  const handleChangeAdmin = (event, name) => {
-    setEditAdmin({ ...EditAdmin, [name]: event.target.value })
-  }
-  const handleChangeAdmins = (event, name) => {
-    setEditAdmin({ ...EditAdmin.address, [name]: event.target.value })
-  }
+
 
   const handleUpdateOrder = () => {
 
 
-    axios.post(`http://localhost:8000/edit/order/address/${EditAdmin._id}`, { EditAdmin }, {
+    axios.post(`http://localhost:8000/edit/order/address/${EditAdmin._id}`, { address: EditAdmin.address }, {
       headers: {
         Authorization: localStorage.getItem("myapptoken")
       }
-    })
+    }
+
+    )
       .then((res) => {
         if (res.data.status === 1) {
           toast.success(res.data.message)
@@ -140,12 +143,31 @@ function Order() {
         }
 
       }).catch((err) => { console.log(err) })
+
+  }
+  const EditToggle = (data) => {
+    setEditAdmin(data)
+    setEditAdminModal(!EditAdminModal)
+  }
+  const handleChangeAdmins = (event, name) => {
+    setEditAdmin({
+      ...EditAdmin,
+      address: {
+        ...EditAdmin.address,
+        [name]: event.target.value
+      }
+    });
+  }
+
+
+  const handleChangeAdmin = (event, name) => {
+    setEditAdmin({ ...EditAdmin, [name]: event.target.value })
   }
 
   const UpdateOrderAdmin = () => {
 
 
-    axios.post(`http://localhost:8000/edit/order/admin/${EditAdmin._id}`,EditAdmin, {
+    axios.post(`http://localhost:8000/edit/order/admin/${EditAdmin._id}`, EditAdmin, {
       headers: {
         Authorization: localStorage.getItem("myapptoken")
       }
@@ -169,59 +191,53 @@ function Order() {
 
 
   return (
-    <div className='container mt-5'>
-      <div className=' d-sm-flex justify-content-between align-items-center mb-4'>
 
-      </div>
-      <div className='cardorder shadow mb-4 '>
-        <div className='card-header py-3'>
-          <h6 className='font-weight-bold text-primary m-0'>Order Details</h6>
-        </div>
-        <div className='card-body text-center'>
 
-          <div className='table-responsive'>
-            <table id="example" class="table table-striped table-bordered" style={{ width: "100%" }}>
-              <thead className=' text-uppercase text-light'>
-                <tr>
-                  <th scope="col">S.no</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">ProductName</th>
-                  <th scope="col">Price</th>
-                  <th scope='col'>City</th>
-                  <th scope='col'>Pincode</th>
-                  <th scope="col">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {orderlist.map((list, index) => {
-                  return <tr>
-                    <th scope="row">{index + 1}</th>
-                    <td scope='row'>{list.address?.Name}</td>
-                    <td>{list.productName}</td>
-                    <td>{list.Price}</td>
-                    <td scope='row'>{list.address?.City}</td>
-                    <td scope='row'>{list.address?.Pincode}</td>
+    <div id="table" className='table-responsive my-5'>
+      <table class='w-100'>
+        <thead className=' text-uppercase '>
+          <tr>
+            <th scope="col">S.no</th>
+            <th scope="col">Name</th>
+            <th scope="col">ProductName</th>
+            <th scope="col">Price</th>
+            <th scope='col'>City</th>
+            <th scope='col'>Pincode</th>
+            <th scope='col'>Delivery Date</th>
+            <th scope='col'>Status</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {orderlist.map((list, index) => {
+            return <tr>
+              <td scope="row">{index + 1}</td>
+              <td scope='row'>{list.address?.Name}</td>
+              <td>{list.productName}</td>
+              <td>{list.Offerprice}</td>
+              <td scope='row'>{list.address?.City}</td>
+              <td scope='row'>{list.address?.Pincode}</td>
+              <td>{formatDate(addDaysToDate(list.createdAt))}</td>
+              <td scope='col'>{list.Status}</td>
 
 
 
-                    <td>
+              <td>
 
-                      {user?.role === "admin" ? <button className='btn btn-sm btn-outline-warning mx-2' onClick={() => EditToggle(list)}> <i class="fa fa-pencil-square-o" aria-hidden="true"></i>edit</button>
-                        : <button className='btn btn-warning' onClick={() => edittoggle(list)}>change address</button>}
-                      {
-                        user?.role === "admin" && <button className="btn btn-sm btn-outline-danger mx-2" onClick={() => ondelete(list._id)}><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</button>
+                {user?.role === "admin" ? <button className='btn btn-sm  text-secondary mx-2' onClick={() => EditToggle(list)}> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                :<a className='btn btn-sm text-success' onClick={() => Edittoggle(list)}>change address</a>}
 
-                      }
+                <button className="btn btn-sm text-danger mx-2" onClick={() => ondelete(list._id)}><i class="fa fa-trash-o" aria-hidden="true"></i></button>
 
-                    </td>
-                  </tr>
-                })}
-              </tbody>
-            </table>
 
-          </div>
-        </div>
-      </div>
+
+              </td>
+            </tr>
+          })}
+        </tbody>
+      </table>
+
+
       <Modal isOpen={Deletemodal} toggle={() => setDeletemodal(!Deletemodal)}>
         <ModalHeader> Delete Confirmation</ModalHeader>
         <ModalBody>
@@ -252,8 +268,8 @@ function Order() {
 
                     <span className='mx-2' style={{ color: "red" }}></span></label>
                   <input type="text" class="form-control"
-                    value={EditAdmin?.address?.Name}
-                    onChange={(event) => handlechange(event, "Name")}
+                    value={EditAdmin.address?.Name}
+                    onChange={(event) => handleChangeAdmins(event, "Name")}
                   />
                 </div>
               </div>
@@ -264,8 +280,8 @@ function Order() {
                     <span className='mx-2' style={{ color: "red" }}>{ }</span>
                   </label>
                   <input type="text" class="form-control"
-                    value={EditAdmin?.address?.Line1}
-                    onChange={(event) => handlechange(event, "Line1")}
+                    value={EditAdmin.address?.Line1}
+                    onChange={(event) => handleChangeAdmins(event, "Line1")}
                   />
                 </div>
               </div>
@@ -275,8 +291,8 @@ function Order() {
                     <span className='mx-2' style={{ color: "red" }}></span>
                   </label>
                   <input type="text" class="form-control"
-                    value={EditAdmin?.address?.Line2}
-                    onChange={(event) => handlechange(event, "Line2")}
+                    value={EditAdmin.address?.Line2}
+                    onChange={(event) => handleChangeAdmins(event, "Line2")}
                   />
                 </div>
 
@@ -287,8 +303,8 @@ function Order() {
                     <span className='mx-2' style={{ color: "red" }}></span>
                   </label>
                   <input type="text" class="form-control"
-                    value={EditAdmin?.address?.City}
-                    onChange={(event) => handlechange(event, "City")}
+                    value={EditAdmin.address?.City}
+                    onChange={(event) => handleChangeAdmins(event, "City")}
                   />
                 </div>
 
@@ -299,8 +315,8 @@ function Order() {
                     <span className='mx-2' style={{ color: "red" }}></span>
                   </label>
                   <input type="text" class="form-control"
-                    value={EditAdmin?.address?.State}
-                    onChange={(event) => handlechange(event, "State")}
+                    value={EditAdmin.address?.State}
+                    onChange={(event) => handleChangeAdmins(event, "State")}
                   />
                 </div>
 
@@ -311,8 +327,8 @@ function Order() {
                     <span className='mx-2' style={{ color: "red" }}></span>
                   </label>
                   <input type="text" class="form-control"
-                    value={EditAdmin?.address?.Country}
-                    onChange={(event) => handlechange(event, "Country")}
+                    value={EditAdmin.address?.Country}
+                    onChange={(event) => handleChangeAdmins(event, "Country")}
                   />
                 </div>
 
@@ -323,8 +339,8 @@ function Order() {
                     <span className='mx-2' style={{ color: "red" }}></span>
                   </label>
                   <input type="number" class="form-control"
-                    value={EditAdmin?.address?.Pincode}
-                    onChange={(event) => handlechange(event, "Pincode")}
+                    value={EditAdmin.address?.Pincode}
+                    onChange={(event) => handleChangeAdmins(event, "Pincode")}
                   />
                 </div>
 
@@ -351,7 +367,7 @@ function Order() {
 
                   </label>
                   <input type="text" class="form-control" name='productName'
-                    value={EditAdmin?.productName}
+                    value={EditAdmin.productName}
                     onChange={(event) => handleChangeAdmin(event, "productName")}
                   />
                 </div>
@@ -471,7 +487,7 @@ function Order() {
                   </label>
                   <input type="text" class="form-control"
                     value={EditAdmin.address?.Country}
-                    onChange={(event) => handlechange(event, "Country")}
+                    onChange={(event) => handleChangeAdmins(event, "Country")}
                   />
                 </div>
 
@@ -488,6 +504,19 @@ function Order() {
                 </div>
 
               </div>
+              <div className='col-sm-12 col-md-6 col-lg-6'>
+                <div class="mb-3">
+                  <label class="form-label  text-primary">Status
+
+                  </label>
+                  <Select options={statusoption}
+                    value={statusoption.filter((list) => list.value === EditAdmin.Status)}
+                    onChange={(op) => setEditAdmin({ ...EditAdmin, Status: op.value })}
+
+                  />
+                </div>
+
+              </div>
 
 
 
@@ -500,8 +529,8 @@ function Order() {
 
         <ModalFooter><button className='btn btn-warning ' onClick={() => UpdateOrderAdmin()}>Update</button></ModalFooter>
       </Modal>
-    </div>
 
+    </div>
 
   )
 }

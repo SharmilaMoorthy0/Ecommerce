@@ -9,7 +9,10 @@
 .login-img{
   margin-top: 150px;
 }
-
+.login-page{
+  width: 75%;
+  margin: auto;
+}
 .login-input{
   width: 350px;
   border: none;
@@ -38,4 +41,15 @@
   color: blue;
   font-weight: 600;
   cursor: pointer;
+}
+@media (max-width:480px) {
+  .login-input{
+    width: 350px;
+    border: none;
+    border-bottom: 1px solid blue;
+  }
+  .login-page{
+    width:100%;
+    margin: auto;
+  }
 }

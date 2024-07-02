@@ -1,0 +1,19 @@
+img{
+    object-fit: cover;
+}
+.single-product{
+    margin-top: 80px;
+}
+.single-product .col-6 img{
+    padding: 0px;
+    object-fit: cover;
+    width: 100%;
+}
+.single-product .col-6 {
+    padding: 20px;
+}
+h4{
+    padding: 20px 0px;
+    font-size: 22px;
+    font-weight: bold;
+}

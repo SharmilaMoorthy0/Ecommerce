@@ -12,7 +12,7 @@ function SignUp({ toggleLogin }) {
         Email: "",
         password: "",
         mobile: 0,
-        Address:""
+        
     }
     )
     const handleChange = (e) => {
@@ -31,9 +31,7 @@ function SignUp({ toggleLogin }) {
         if (user.mobile === "") {
             return toast.error("mobile requried")
         }
-        if (user.Address === "") {
-            return toast.error(" Address requried")
-        }
+        
 
         axios.post("http://localhost:8000/user/signup", user).then((res) => {
             if (res.data.status === 1) {
@@ -54,7 +52,7 @@ function SignUp({ toggleLogin }) {
         <div className='row'>
             
             <div className='col-12 right-login'>
-                <div className='container m-auto w-75 mt-5'>
+                <div className='container login-page mt-5'>
                     <div>
                         <input className='login-input' name="username" type='text' placeholder='Enter User Name' onChange={(e)=>handleChange(e)}/>
                     </div>
@@ -67,9 +65,7 @@ function SignUp({ toggleLogin }) {
                     <div>
                         <input className='login-input' name="password" type='password' placeholder='Enter Password' onChange={(e)=>handleChange(e)}/>
                     </div>
-                    <div>
-                        <input className='login-input' name="Address" type='text' placeholder='Enter Address' onChange={(e)=>handleChange(e)}/>
-                    </div>
+                  
                    
                     <button className='req-btn' onClick={onSubmit}>Continue</button>
                     <button className='req-exist-btn' onClick={()=>toggleLogin()}>Existing User? Login</button>

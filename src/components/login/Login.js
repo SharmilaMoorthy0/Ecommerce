@@ -68,7 +68,7 @@ function Login({ toggleSignUp, closeLogin }) {
             <div className='row'>
                 
              <div className='col-12 right-login'>
-                    <div className='container m-auto w-75 mt-5'>
+                    <div className='container login-page  mt-5'>
                         <div>
                             <input className='login-input' type="email" name="Email" placeholder='Enter Email' onChange={(e) => handleChange(e)} />
                         </div>

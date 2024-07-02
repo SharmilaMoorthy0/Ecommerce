@@ -43,7 +43,7 @@ function Header({ setCartData, fetchCartData, CartData }) {
   }, [])
   return (
     <>
-      <MobileNav isopen={openmenu} togglemenu={togglemenu} />
+      <MobileNav isopen={openmenu} togglemenu={togglemenu}  setCartData={setCartData}/>
       <nav class="navbar navbar-expand-lg  navbar-dark" id='navbar'>
         <div className='container'>
           <a class="navbar-brand" href="#">Plants</a>
@@ -72,7 +72,9 @@ function Header({ setCartData, fetchCartData, CartData }) {
 
             </ul>
             {
-              token ? <span className='mx-3  text-white border border-0 fs-1 fw-bold rounded-circle '>{userData ? userData.username[0] : <i class="fa fa-user" aria-hidden="true"></i>}</span> : <button className='button1' onClick={() => setIsLogin(!islogin)}>logIn</button>
+              token ? <span className='mx-3  text-white border border-0 fs-1 fw-bold rounded-circle text-uppercase'>{userData ? userData.username[0] : 
+              <i class="fa fa-user" aria-hidden="true"></i>}</span> : 
+              <button className='button1' onClick={() => setIsLogin(!islogin)}>logIn</button>
             }
             <button className='cart-btn mx-2' onClick={() => navigate('/cartItem')}><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
               <span class="badge   text-bg-danger">{cartList?.length}</span></button>
@@ -85,8 +87,8 @@ function Header({ setCartData, fetchCartData, CartData }) {
           <div className='d-flex justify-content-between'> 
            <div className='d-flex  justify-content-between d-lg-none d-sm-block '>
            
-               {token? <button className='button2 w-10 ' onClick={() => onLogout()}>Logout</button>: <button className='button1 w-5 ' onClick={() => setIsLogin(!islogin)}>logIn</button>
-            } 
+               {/* {token? <button className='button2 w-10 ' onClick={() => onLogout()}>Logout</button>: <button className='button1 w-5 ' onClick={() => setIsLogin(!islogin)}>logIn</button>
+            }  */}
              
               <button className='cart-btn mx-2' onClick={() => navigate('/cartItem')}><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
                 <span class="badge   text-bg-danger">{cartList?.length}</span></button>
@@ -94,7 +96,7 @@ function Header({ setCartData, fetchCartData, CartData }) {
               
              </div>
              <button className='menu_btn d-lg-none d-md-none d-sm-block ' onClick={togglemenu}>
-             {openmenu ? <i class="fa fa-times" aria-hidden="true"></i> : <i class="fa fa-bars" aria-hidden="true"></i>} </button>
+             {openmenu ?<i class="fa fa-times" aria-hidden="true"></i> : <i class="fa fa-bars" aria-hidden="true"></i>} </button>
           </div>
 
         </div>

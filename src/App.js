@@ -19,7 +19,12 @@ import { Userprovider } from './Context/Context';
 import CheckOut from './components/checkout/Checkout';
 import Order from './components/order/Order';
 import Check from './components/Checkpage/Check';
-
+import ProductAdd from './components/Add/ProductAdd';
+import ProductEdit from './components/edit/ProductEdit';
+import AddToCart from './components/Addtocart/AddToCart';
+import AddressPage from './components/Address/AddressPage';
+import EditAddress from './components/EditAddress/EditAddress';
+import MobileNav from './components/MobileNav/MobileNav';
 
 
 function App() {
@@ -53,6 +58,7 @@ useEffect(()=>{
    <Header cartData={cartData} setCartData={setCartData} fetchCartData={fetchCartData}/>
 <Routes>
     <Route path='/' element={<Home/>}/>
+    <Route path='/mobile/nav' element={<MobileNav  setCartData={setCartData} />}/>
     <Route path='/about' element={<About/>}/>
     <Route path='/product' element={<Product  cartData={cartData} setCartData={setCartData}/>}/>
     <Route path='/contact' element={<Contact/>}/>
@@ -61,6 +67,11 @@ useEffect(()=>{
     <Route path='/cartItem' element={<Cartitem Cart  fetchCartData={fetchCartData} />}/>
     <Route path='/check' element={<Check fetchCartData={fetchCartData}/>}/>
     <Route path='/order'element={<Order/>}/>
+    <Route path='/add'element={<ProductAdd/>}/>
+    <Route path='/edit'element={<ProductEdit/>}/>
+    <Route path='/cart'element={<AddToCart cartData={cartData} setCartData={setCartData}/>}/>
+    <Route path='/address'element={<AddressPage  fetchCartData={fetchCartData}/>}/>
+    <Route path='/edit/address'element={<EditAddress />}/>
    </Routes>
   
    <Toaster/>

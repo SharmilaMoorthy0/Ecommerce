@@ -121,3 +121,14 @@ border-bottom: 2px solid transparent;
     
     }
 }
+@media  (max-width:480px){
+    #navbar{
+        position: sticky;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        padding: .2rem 1rem;
+        box-shadow: 5px 5px 20px rgb(0, 0,0,0.5);
+        background-color: black;
+    }
+}

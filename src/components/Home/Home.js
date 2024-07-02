@@ -5,7 +5,7 @@ function Home() {
   return (
     <div className='HomeSection ' id='HomeSection'>
       <h1 className='text-center'>Naturtal plants</h1>
-      <p>plants makes smile anytime</p>
+      <p>Plants Make People Happy.</p>
       
     </div>
   )

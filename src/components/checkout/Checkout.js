@@ -5,39 +5,45 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Usercontext from "../../Context/Context";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import { addDays, format } from "date-fns";
 
-function CheckOut({ fetchCartData }) {
-  const [addressmodal, setaddressmodal] = useState(false)
+function CheckOut({}) {
+  const [deliveryDate, setDeliveryDate] = useState(null);
   const [buynow, setbuynow] = useState(JSON.parse(localStorage.getItem('buynow')))
-  const [address, setaddress] = useState({
-    Name: "",
-    Line1: "",
-    Line2: "",
-    City: "",
-    State: "",
-    Country: "",
-    Pincode: ""
-  })
   
   const navigate = useNavigate()
-  const cartList = useContext(Usercontext);
+  const cartList = useContext(Usercontext)|| []; // Fallback to empty array if context doesn't provide data;
   console.log(cartList)
   const totalAmount = cartList?.reduce(
-    (prev, curr) => prev + Number(curr.Price),
+    (prev, curr) => prev + Number(curr.Offerprice),
     0
   );
-
   useEffect(() => {
-    fetchCartData()
-  }, [])
+    if (buynow) {
+      // If buy now item exists, calculate delivery date for that item
+      const deliveryDateForBuyNow = addDaysToDate(new Date(), 5); // Add 5 days to current date
+      setDeliveryDate(formatDate(deliveryDateForBuyNow)); // Format and set delivery date
+    } else {
+      // Otherwise, calculate delivery date based on cart items
+      const deliveryDateForCart = addDaysToDate(new Date(), 5); // Add 5 days to current date
+      setDeliveryDate(formatDate(deliveryDateForCart)); // Format and set delivery date
+    }
+  }, [buynow, cartList]);
+ 
+  const addDaysToDate = (date,days) => {
+    return addDays(new Date(date), days); // Add 5 days to the provided date
+  };
 
-  const handlechange = (event, name) => {
-    setaddress({ ...address, [name]: event.target.value })
-  }
+  // Function to format date in a desired format (e.g., "yyyy-MM-dd")
+  const formatDate = (date) => {
+    return format(new Date(date), 'yyyy-MM-dd'); // Format date as needed
+  };
+
 
   const placeOrder = () => {
     if (localStorage.getItem("myapptoken")) {
-      setaddressmodal(!addressmodal)
+      navigate('/address')
+     
 
     }
 
@@ -47,50 +53,7 @@ function CheckOut({ fetchCartData }) {
   }
 
 
-  const Order = (data) => {
-    cartList.forEach((product) => {
-
-      let orderDetails = { ...product, address, buynow: false, ...data }
-      axios.post("http://localhost:8000/new/order", orderDetails, {
-        headers: {
-          Authorization: localStorage.getItem("myapptoken")
-        }
-      }).then((res) => {
-        if (res.data.status === 1) {
-
-        }
-        if (res.data.status === 0) {
-          toast.error(res.data.message)
-        }
-      })
-
-    });
-    setaddressmodal(!addressmodal)
-    toast.success("order placed successfully")
-
-    navigate('/order')
-    fetchCartData()
-  }
-
-  const OrderBuyNow = () => {
-    let client = JSON.parse(localStorage.getItem("userData"))._id
-    let orderDetails = { ...buynow, address, buynow: true, client: client }
-    axios.post("http://localhost:8000/new/order", orderDetails, {
-      headers: {
-        Authorization: localStorage.getItem("myapptoken")
-      }
-    }).then((res) => {
-      if (res.data.status === 1) {
-        toast.success(res.data.message)
-        localStorage.removeItem('buynow')
-        navigate('/order')
-      }
-      if (res.data.status === 0) {
-        toast.error(res.data.message)
-      }
-    })
-
-  }
+ 
   return (
     <div className="container">
       <div className="row mt-4">
@@ -157,9 +120,14 @@ function CheckOut({ fetchCartData }) {
               <h6>Price</h6>
               <p>${buynow ? buynow.Offerprice : totalAmount}</p>
             </div>
+           
             <div className='d-flex justify-content-between'>
               <h6>Shipping</h6>
               <p>Free</p>
+            </div>
+            <div className='d-flex justify-content-between'>
+              <h6>Delivery Date</h6>
+              <p>{deliveryDate}</p>
             </div>
 
             <hr />
@@ -175,109 +143,7 @@ function CheckOut({ fetchCartData }) {
       </div>
 
 
-      <Modal isOpen={addressmodal} toggle={() => setaddressmodal(!addressmodal)} size="lg">
-        <ModalHeader> Enter your Address </ModalHeader>
-        <ModalBody>
-          <div className='container w-75 '>
-            {/* <h1 className='text-center text-primary'>shop Name</h1> */}
-
-            <div className='row mt-5'>
-              <div className='col-sm-12 col-md-6 col-lg-6'>
-
-                <label class="form-label  text-primary">Name
-                  <span className='mx-2' style={{ color: "red" }}>{ }</span>
-                </label>
-                <input type="text" class="form-control" name="Name"
-                  value={address.Name}
-                  onChange={(event) => handlechange(event, "Name")}
-                />
-
-              </div>
-            </div>
-
-            <div className='col-sm-12 col-md-6 col-lg-6'>
-              <div class="mb-3">
-                <label class="form-label  text-primary">line 1
-                  <span className='mx-2' style={{ color: "red" }}>{ }</span>
-                </label>
-                <input type="text" class="form-control"
-                  value={address.Line1}
-                  onChange={(event) => handlechange(event, "Line1")}
-                />
-              </div>
-            </div>
-            <div className='col-sm-12 col-md-6 col-lg-6'>
-              <div class="mb-3">
-                <label class="form-label  text-primary">line 2
-                  <span className='mx-2' style={{ color: "red" }}></span>
-                </label>
-                <input type="text" class="form-control"
-                  value={address.Line2}
-                  onChange={(event) => handlechange(event, "Line2")}
-                />
-              </div>
-
-            </div>
-            <div className='col-sm-12 col-md-6 col-lg-6'>
-              <div class="mb-3">
-                <label class="form-label  text-primary">City
-                  <span className='mx-2' style={{ color: "red" }}></span>
-                </label>
-                <input type="text" class="form-control"
-                  value={address.City}
-                  onChange={(event) => handlechange(event, "City")}
-                />
-              </div>
-
-            </div>
-            <div className='col-sm-12 col-md-6 col-lg-6'>
-              <div class="mb-3">
-                <label class="form-label  text-primary">State
-                  <span className='mx-2' style={{ color: "red" }}></span>
-                </label>
-                <input type="text" class="form-control"
-                  value={address.State}
-                  onChange={(event) => handlechange(event, "State")}
-                />
-              </div>
-
-            </div>
-            <div className='col-sm-12 col-md-6 col-lg-6'>
-              <div class="mb-3">
-                <label class="form-label  text-primary">Country
-                  <span className='mx-2' style={{ color: "red" }}></span>
-                </label>
-                <input type="text" class="form-control"
-                  value={address.Country}
-                  onChange={(event) => handlechange(event, "Country")}
-                />
-              </div>
-
-            </div>
-            <div className='col-sm-12 col-md-6 col-lg-6'>
-              <div class="mb-3">
-                <label class="form-label  text-primary">Pincode
-                  <span className='mx-2' style={{ color: "red" }}></span>
-                </label>
-                <input type="number" class="form-control"
-                  value={address.Pincode}
-                  onChange={(event) => handlechange(event, "Pincode")}
-                />
-              </div>
-
-            </div>
-          </div>
-
-
-
-
-
-
-        </ModalBody>
-        <ModalFooter>
-          <button className="btn btn-success" onClick={() => { buynow ? OrderBuyNow() : Order() }}>Place Order</button>
-        </ModalFooter>
-      </Modal>
+     
     </div >
   );
 }

@@ -1,8 +1,10 @@
 .product-card{
-    background-color: bisque;
+    /* background-color: bisque; */
     padding: 10px;
 }
-
+img{
+    object-fit: cover;
+}
 .add-btn{
     background-color: orange;
     padding: 10px 20px;
@@ -24,3 +26,12 @@
     width: 70%;
     height: 45px;
 }
+ .product-card{
+ margin-left: 60px!important;
+}
+
+ @media (max-width:480px) {
+    .product{
+       align-items: center;
+    }
+ }
