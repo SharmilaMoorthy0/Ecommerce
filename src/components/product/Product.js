@@ -21,7 +21,7 @@ function Products({ }) {
 
   const handleSearch = () => {
     setLoading(true);
-    axios.post("http://localhost:8000/product/search", { query: searchQuery }, {
+    axios.post("https://backend-t6li.onrender.com/product/search", { query: searchQuery }, {
       headers: {
         Authorization: localStorage.getItem("myapptoken")
       }
@@ -38,7 +38,7 @@ function Products({ }) {
   };
   const fetchAllProducts = () => {
     axios
-      .post("http://localhost:8000/all/product", {
+      .post("https://backend-t6li.onrender.com/all/product", {
         headers: {
           Authorization: localStorage.getItem("myapptoken")
         }
@@ -87,7 +87,7 @@ function Products({ }) {
     setDeleteid(null)
   }
   const deleteproduct = (id) => {
-    axios.post("http://localhost:8000/remove/product", { id: Deleteid }, {
+    axios.post("https://backend-t6li.onrender.com/remove/product", { id: Deleteid }, {
       headers: {
         Authorization: localStorage.getItem("myapptoken")
       }

@@ -20,7 +20,7 @@ function ProductAdd() {
     const handlesubmit = () => {
 
 
-        axios.post("http://localhost:8000/new/product", { productName, Description, Price, Offerprice, Rating, Image }, {
+        axios.post("https://backend-t6li.onrender.com/new/product", { productName, Description, Price, Offerprice, Rating, Image }, {
             headers: {
                 Authorization: localStorage.getItem("myapptoken")
             }

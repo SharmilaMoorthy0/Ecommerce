@@ -31,7 +31,7 @@ function AddressPage({fetchCartData}) {
         cartList.forEach((product) => {
 
             let orderDetails = { ...product, address, buynow: false, ...data }
-            axios.post("http://localhost:8000/new/order", orderDetails, {
+            axios.post("https://backend-t6li.onrender.com/new/order", orderDetails, {
                 headers: {
                     Authorization: localStorage.getItem("myapptoken")
                 }
@@ -54,7 +54,7 @@ function AddressPage({fetchCartData}) {
     const OrderBuyNow = () => {
         let client = JSON.parse(localStorage.getItem("userData"))._id
         let orderDetails = { ...buynow, address, buynow: true, client: client }
-        axios.post("http://localhost:8000/new/order", orderDetails, {
+        axios.post("https://backend-t6li.onrender.com/new/order", orderDetails, {
           headers: {
             Authorization: localStorage.getItem("myapptoken")
           }
