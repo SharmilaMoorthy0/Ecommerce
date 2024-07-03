@@ -95,8 +95,8 @@ function Header({ setCartData, fetchCartData, CartData }) {
 
               
              </div>
-             <button className='menu_btn d-lg-none d-md-none d-sm-block ' onClick={togglemenu}>
-             {openmenu ?<i class="fa fa-times" aria-hidden="true"></i> : <i class="fa fa-bars" aria-hidden="true"></i>} </button>
+             <button className="menu_btn d-lg-none d-md-none d-sm-block " onClick={togglemenu}>
+             {openmenu ?"" : <i class="fa fa-bars" aria-hidden="true"></i>} </button>
           </div>
 
         </div>

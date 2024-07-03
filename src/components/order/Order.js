@@ -103,10 +103,7 @@ function Order() {
 
   }
 
-  const edittoggle = (data) => {
-    setEditAdmin(data)
-    setEditAddressChange(!EditAddressChange)
-  }
+ 
   const addDaysToDate = (date) => {
     return addDays(new Date(date), 5); // Add 5 days to the provided date
   };
@@ -120,31 +117,7 @@ function Order() {
 
 
 
-  const handleUpdateOrder = () => {
-
-
-    axios.post(`http://localhost:8000/edit/order/address/${EditAdmin._id}`, { address: EditAdmin.address }, {
-      headers: {
-        Authorization: localStorage.getItem("myapptoken")
-      }
-    }
-
-    )
-      .then((res) => {
-        if (res.data.status === 1) {
-          toast.success(res.data.message)
-          setEditAddressChange(!EditAddressChange)
-          setEditAdmin({})
-          getOrderlist()
-
-        }
-        if (res.data.status === 0) {
-          toast.success(res.data.message)
-        }
-
-      }).catch((err) => { console.log(err) })
-
-  }
+ 
   const EditToggle = (data) => {
     setEditAdmin(data)
     setEditAdminModal(!EditAdminModal)
@@ -205,6 +178,7 @@ function Order() {
             <th scope='col'>Pincode</th>
             <th scope='col'>Delivery Date</th>
             <th scope='col'>Status</th>
+            <th scope='col'>Cancel</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -219,6 +193,8 @@ function Order() {
               <td scope='row'>{list.address?.Pincode}</td>
               <td>{formatDate(addDaysToDate(list.createdAt))}</td>
               <td scope='col'>{list.Status}</td>
+              <td> <button className="btn btn-sm text-danger mx-2" onClick={() => ondelete(list._id)}><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+              </td>
 
 
 
@@ -227,8 +203,7 @@ function Order() {
                 {user?.role === "admin" ? <button className='btn btn-sm  text-secondary mx-2' onClick={() => EditToggle(list)}> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                 :<a className='btn btn-sm text-success' onClick={() => Edittoggle(list)}>change address</a>}
 
-                <button className="btn btn-sm text-danger mx-2" onClick={() => ondelete(list._id)}><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-
+               
 
 
               </td>
@@ -253,109 +228,7 @@ function Order() {
           </div>
         </ModalBody>
       </Modal>
-      <Modal isOpen={EditAddressChange} toggle={() => setEditAddressChange(!EditAddressChange)} size='lg' centered>
-        <ModalHeader toggle={() => setEditAddressChange(!EditAddressChange)}>Change your editaddress</ModalHeader>
-        <ModalBody>
-          <div className='container w-75 '>
-            {/* <h1 className='text-center text-primary'>shop Name</h1> */}
-
-            <div className='row mt-5'>
-
-
-              <div className='col-sm-12 col-md-6 col-sm-6'>
-                <div class="mb-3 needs-validation" novalidate>
-                  <label class="form-label text-primary mx-2">Name
-
-                    <span className='mx-2' style={{ color: "red" }}></span></label>
-                  <input type="text" class="form-control"
-                    value={EditAdmin.address?.Name}
-                    onChange={(event) => handleChangeAdmins(event, "Name")}
-                  />
-                </div>
-              </div>
-
-              <div className='col-sm-12 col-md-6 col-sm-6'>
-                <div class="mb-3">
-                  <label class="form-label  text-primary">line 1
-                    <span className='mx-2' style={{ color: "red" }}>{ }</span>
-                  </label>
-                  <input type="text" class="form-control"
-                    value={EditAdmin.address?.Line1}
-                    onChange={(event) => handleChangeAdmins(event, "Line1")}
-                  />
-                </div>
-              </div>
-              <div className='col-sm-12 col-md-6 col-sm-6'>
-                <div class="mb-3">
-                  <label class="form-label  text-primary">line 2
-                    <span className='mx-2' style={{ color: "red" }}></span>
-                  </label>
-                  <input type="text" class="form-control"
-                    value={EditAdmin.address?.Line2}
-                    onChange={(event) => handleChangeAdmins(event, "Line2")}
-                  />
-                </div>
-
-              </div>
-              <div className='col-sm-12 col-md-6 col-sm-6'>
-                <div class="mb-3">
-                  <label class="form-label  text-primary">City
-                    <span className='mx-2' style={{ color: "red" }}></span>
-                  </label>
-                  <input type="text" class="form-control"
-                    value={EditAdmin.address?.City}
-                    onChange={(event) => handleChangeAdmins(event, "City")}
-                  />
-                </div>
-
-              </div>
-              <div className='col-sm-12 col-md-6 col-sm-6'>
-                <div class="mb-3">
-                  <label class="form-label  text-primary">State
-                    <span className='mx-2' style={{ color: "red" }}></span>
-                  </label>
-                  <input type="text" class="form-control"
-                    value={EditAdmin.address?.State}
-                    onChange={(event) => handleChangeAdmins(event, "State")}
-                  />
-                </div>
-
-              </div>
-              <div className='col-sm-12 col-md-6 col-sm-6'>
-                <div class="mb-3">
-                  <label class="form-label  text-primary">Country
-                    <span className='mx-2' style={{ color: "red" }}></span>
-                  </label>
-                  <input type="text" class="form-control"
-                    value={EditAdmin.address?.Country}
-                    onChange={(event) => handleChangeAdmins(event, "Country")}
-                  />
-                </div>
-
-              </div>
-              <div className='col-sm-12 col-md-6 col-sm-6'>
-                <div class="mb-3">
-                  <label class="form-label  text-primary">Pincode
-                    <span className='mx-2' style={{ color: "red" }}></span>
-                  </label>
-                  <input type="number" class="form-control"
-                    value={EditAdmin.address?.Pincode}
-                    onChange={(event) => handleChangeAdmins(event, "Pincode")}
-                  />
-                </div>
-
-              </div>
-
-
-
-            </div>
-
-          </div>
-        </ModalBody>
-        <ModalFooter>
-          <button className='btn btn-success' onClick={() => handleUpdateOrder()}>Update Address</button>
-        </ModalFooter>
-      </Modal>
+    
       <Modal isOpen={EditAdminModal} toggle={() => setEditAdminModal(!EditAdminModal)} size='lg' centered>
         <ModalHeader toggle={() => setEditAdminModal(!EditAdminModal)}>Edit details</ModalHeader>
         <ModalBody>

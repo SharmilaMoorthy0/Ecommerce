@@ -86,7 +86,7 @@ function CartItem({ fetchCartData }) {
                 </tbody>
             </table>
             <div className='d-flex justify-content-end'>
-            <button className="pay-btn" onClick={()=>{token?openCheckout():openLogin()}}>{token?"Pay Now":"Login to Pay"}</button>
+            <button className="pay-btn" onClick={()=>{token?openCheckout():openLogin()}}>{token?"PayNow":"Login to Pay"}</button>
             </div>
             <Modal isOpen={islogin} toggle={() => setIsLogin(!islogin)} centered size='md'>
         <ModalBody>

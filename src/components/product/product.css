@@ -7,16 +7,18 @@ img{
 }
 .add-btn{
     background-color: orange;
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
     color: white;
     border-radius: 5px;
     border: none;
     margin:0px 2px;
+    padding: 10px 5px;
 }
 
 .buy{
     background-color: rgb(255, 119, 0);
-    padding: 10px 30px;
+    /* padding: 10px 30px; */
+    padding: 10px 10px;
     color: white;
     border-radius: 5px;
     border: none;

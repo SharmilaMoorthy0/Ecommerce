@@ -38,7 +38,7 @@ function Home() {
             <img src={img2} class="d-block w-100 img-style1" alt="..." width="100%" height="700px" />
             <div class="carousel-caption d-sm-block d-md-block">
             <div className='HomeSection ' id='HomeSection'>
-                <h1 className='text-center'>Naturtal plants</h1>
+                <h1 className='text-center'>Indoor and outdoor plants</h1>
                 <p>Plants Make People Happy.</p>
 
               </div>

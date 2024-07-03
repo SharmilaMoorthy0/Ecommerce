@@ -123,7 +123,7 @@ function CheckOut({}) {
            
             <div className='d-flex justify-content-between'>
               <h6>Shipping</h6>
-              <p>Free</p>
+              <p>Free $40</p>
             </div>
             <div className='d-flex justify-content-between'>
               <h6>Delivery Date</h6>

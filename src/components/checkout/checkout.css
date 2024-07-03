@@ -45,9 +45,10 @@ hr{
         background-color: #0f7124;
         color: white;
         padding: 10px 30px;
-        margin: 10px 0px;
+        margin: 10px 10px;
         border: none;
         border-radius: 5px;
+       
     }
     input{
         width: 100%!important;

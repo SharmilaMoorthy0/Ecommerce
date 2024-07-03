@@ -112,7 +112,7 @@ function Products({ }) {
 
 
   return (
-    <div className="container-fluid   mt-3">
+    <div className="container  mt-3">
       {/* <div className="d-flex justify-content-between search input-group  ">
 
         <h1 className="mx-5">Plants</h1>
@@ -195,7 +195,7 @@ function Products({ }) {
           {loading ?
             <div className="col text-center">Loading...</div>
             : products.map((list) => (
-              <div className="col-sm-12 col-md-6 col-lg-4 my-3" key={list._id}>
+              <div className="col-sm-12 col-md-6 col-lg-3 my-3" key={list._id}>
                 <div className=" product-card">
                   <img src={list.Image} className="card-img-top" alt={list.productName} />
                   <div className="card-body">
