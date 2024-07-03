@@ -18,7 +18,7 @@ import { Userprovider } from './Context/Context';
 
 import CheckOut from './components/checkout/Checkout';
 import Order from './components/order/Order';
-import Check from './components/Checkpage/Check';
+
 import ProductAdd from './components/Add/ProductAdd';
 import ProductEdit from './components/edit/ProductEdit';
 import AddToCart from './components/Addtocart/AddToCart';
@@ -65,7 +65,7 @@ useEffect(()=>{
    
     <Route path='/checkout' element={<CheckOut fetchCartData={fetchCartData}/>}/>
     <Route path='/cartItem' element={<Cartitem Cart  fetchCartData={fetchCartData} />}/>
-    <Route path='/check' element={<Check fetchCartData={fetchCartData}/>}/>
+   
     <Route path='/order'element={<Order/>}/>
     <Route path='/add'element={<ProductAdd/>}/>
     <Route path='/edit'element={<ProductEdit/>}/>

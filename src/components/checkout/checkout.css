@@ -38,15 +38,19 @@ hr{
     padding: 8px 100px;
     margin: 10px 0px;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
 }
 @media (max-width:480px) {
     .pay-btn{
         background-color: #0f7124;
         color: white;
-        padding: 10px 60px;
+        padding: 10px 30px;
         margin: 10px 0px;
         border: none;
         border-radius: 5px;
+    }
+    input{
+        width: 100%!important;
+        margin: auto;
     }
 }

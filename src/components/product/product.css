@@ -23,15 +23,43 @@ img{
     margin:0px 2px;
 }
 .input-group {
-    width: 70%;
+    width: 60%;
     height: 45px;
+   
 }
+
  .product-card{
  margin-left: 60px!important;
 }
-
+.container{
+    width: 100%;
+}
  @media (max-width:480px) {
-    .product{
-       align-items: center;
+    .input-group {
+        width: 60%;
+        height: 45px;
+       
+       
+       
     }
- }
+    .add-btn{
+        background-color: orange;
+        padding: 10px 10px;
+        color: white;
+        border-radius: 5px;
+        border: none;
+        margin:0px 2px;
+       
+    }
+   
+   
+    
+    .buy{
+        background-color: rgb(255, 119, 0);
+        padding: 10px 20px;
+        color: white;
+        border-radius: 5px;
+        border: none;
+        margin:0px 2px;
+    }
+}

@@ -5,10 +5,12 @@
     justify-content: center;
     align-items: center;
 }
-
+img{
+    object-fit: cover;
+}
 #HomeSection {
    flex-direction: column;
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, .8)), url('../Images/plants.jpg');
+    /* background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, .8)), url('../Images/plants.jpg'); */
     background-size: cover;
     background-position: center;
     object-fit: cover;
@@ -42,11 +44,14 @@
 }
 @media (max-width:480px){
     #HomeSection h1 {
-        font-size: 80px;
+        font-size: 70px;
         color: #fff;
         letter-spacing: 2px;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         text-transform: uppercase;
+        align-items: center;
+        justify-content: center;
+        margin-top: 90px;
         text-shadow: 0px 0px 0px #CCC,
             0px 2px 0px #CCC,
             0px 3px 0px #CCC,
@@ -54,5 +59,16 @@
             0px 5px 0px #CCC,
             0px 6px 0px #CCC,
             0px 7px 0px #CCC;
+            
+    }
+    .HomeSection {
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    img{
+        object-fit: cover;
     }
 }

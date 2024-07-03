@@ -71,7 +71,7 @@ function EditAddressEdit() {
                         <div>
                             <labe>Line 2</labe>
                             <input type="text" class="input-text"
-                            value={AddressEdit?.Line2}
+                            value={AddressEdit?.address?.Line2}
                             onChange={(e) => handleChangeAdmins(e,"Line2")}
                             />
                         </div>

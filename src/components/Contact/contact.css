@@ -4,7 +4,7 @@
 .box{
    
     width: 80%!important;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 .form{
     display: flex;
@@ -24,4 +24,18 @@
     width: 25%;
     padding: 10px;
 
+}
+img{
+    object-fit: cover;
+}
+@media (max-width:480px) {
+    .button{
+        background: green!important;
+        color: #fff!important;
+        box-shadow: 2px 4px 5px rgba(0,0,0,0.3);
+        border: 1px solid green;
+        width: 35%;
+        padding: 10px;
+    
+    }
 }

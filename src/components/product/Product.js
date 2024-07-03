@@ -112,35 +112,94 @@ function Products({ }) {
 
 
   return (
-    <div className="container">
-      <div className="d-flex justify-content-between align-items-center input-group ">
+    <div className="container-fluid   mt-3">
+      {/* <div className="d-flex justify-content-between search input-group  ">
 
-      <h1 className="mx-3">Plants</h1>
-      <input type='text' className='form-control w-50 m-auto ' placeholder='search' value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-         
-        />
-         <button className='btn login' onClick={handleSearch} ><i class="fa fa-search" aria-hidden="true"></i></button>
-         
-       
+        <h1 className="mx-5">Plants</h1>
+        
         {user?.role === 'admin' && <div><button className="btn btn-primary mx-5" onClick={() => navigate('/add')}>add</button>
-        </div>
-        } </div>
+        </div>}
+       <input className='form-control '  placeholder='search' value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)} />
+        <button className='btn btn-sm login' onClick={handleSearch} ><i class="fa fa-search" aria-hidden="true"></i></button>
+
+        </div> */}
+      <div className="d-flex justify-content-between align-items-center">
+        <h1 className="mx-1 ">Plants
+        {user?.role === 'admin' && (
+          <button className="btn btn-primary mx-3 mx-md-5" onClick={() => navigate('/add')}>
+            Add
+          </button>
+        )}
+        </h1>
+
        
-     
-     {searchQuery ? <div className="container mt-5">
-      <div className="row">
-          {loading ? 
+
+        <div className="   d-flex justify-content-between text-end  search">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+
+          />
+          <button className="btn btn-sm login" onClick={handleSearch}>
+            <i className="fa fa-search" aria-hidden="true"></i>
+          </button>
+        </div>
+       
+      </div>
+
+
+
+      {searchQuery ?
+        <div className="row">
+          {loading ?
             <div className="col text-center">Loading...</div>
-          : searchResults.length === 0 ? (
-            <div className="col text-center">No results found.</div>
-          ) : (
-            searchResults.map((list) => (
+            : searchResults.length === 0 ? (
+              <div className="col text-center">No results found.</div>
+            ) : (
+              searchResults.map((list) => (
+                <div className="col-sm-12 col-md-6 col-lg-4 my-3" key={list._id}>
+                  <div className=" product-card">
+                    <img src={list.Image} className="card-img-top" alt={list.productName} />
+                    <div className="card-body">
+                      <p className="card-title">{list.productName}</p>
+                      <div>
+                        <span className={Number(list.Rating) >= 3 ? "badge text-bg-success" : "badge text-bg-danger"}>
+                          {list.Rating} <i className="fa fa-star-o" aria-hidden="true"></i>
+                        </span>
+                      </div>
+                      <p>
+                        <strong>${list.Offerprice}</strong>
+                        <span className="text-decoration-line-through text-muted fs-6">${list.Price}</span>
+                      </p>
+
+                      <div>
+                        <button className="add-btn " onClick={() => handleAddtoCart(list)}>
+                          <i className="fa fa-cart-plus me-1" aria-hidden="true"></i> Add to Cart
+                        </button>
+                        <button className="buy" onClick={() => handleBuyNow(list)}>
+                          <i className="fa fa-bolt me-1" aria-hidden="true"></i> Buy Now
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
+        </div>
+        :
+        <div className="row">
+          {loading ?
+            <div className="col text-center">Loading...</div>
+            : products.map((list) => (
               <div className="col-sm-12 col-md-6 col-lg-4 my-3" key={list._id}>
                 <div className=" product-card">
                   <img src={list.Image} className="card-img-top" alt={list.productName} />
                   <div className="card-body">
-                    <h5 className="card-title">{list.productName}</h5>
+                    <p className="card-title">{list.productName}</p>
                     <div>
                       <span className={Number(list.Rating) >= 3 ? "badge text-bg-success" : "badge text-bg-danger"}>
                         {list.Rating} <i className="fa fa-star-o" aria-hidden="true"></i>
@@ -150,7 +209,13 @@ function Products({ }) {
                       <strong>${list.Offerprice}</strong>
                       <span className="text-decoration-line-through text-muted fs-6">${list.Price}</span>
                     </p>
-                   
+                    {
+                      user?.role === 'admin' && <div className="my-2">
+                        <button className="btn btn-sm btn-outline-primary mx-2" onClick={()=>edittoggle(list)}>Edit</button>
+                        <button className="btn btn-sm btn-outline-danger" onClick={()=>ondelete(list._id)}>Delete</button>
+                      </div>
+                    }
+
                     <div>
                       <button className="add-btn " onClick={() => handleAddtoCart(list)}>
                         <i className="fa fa-cart-plus me-1" aria-hidden="true"></i> Add to Cart
@@ -163,63 +228,33 @@ function Products({ }) {
                 </div>
               </div>
             ))
-          )}
+          }
+
         </div>
-      </div>:<div className="container mt-5">
-      <div className="row">
-             {loading ? <div>Loading.....</div> : products.map((list) => {
-                return <div className="col-sm-12 col-md-6 col-lg-4 my-5 product">
-                  <div class=" product-card" style={{ width: "22rem" }}>
-                    <img src={list.Image} class="card-img-top" alt="..." />
-                    <div class="card-body">
-                      <p class="card-title">{list.productName}</p>
-                      {/* <p class="card-text">
-                        {list.Description}
-                      </p> */}
-                      <div><span class={Number(list.Rating) >= 3 ? "badge text-bg-success" : "badge text-bg-danger"}>{list.Rating} <i class="fa fa-star-o" aria-hidden="true"></i></span></div>
-                      <p ><h5>${list.Offerprice} <span className="text-decoration-line-through text-muted fs-6">${list.Price}</span></h5></p>
-                      {
-                        user?.role === 'admin' && <div className="my-2">
-                          <button className="btn btn-sm btn-outline-primary mx-2" onClick={()=>edittoggle(list)}>Edit</button>
-                          <button className="btn btn-sm btn-outline-danger" onClick={()=>ondelete(list._id)}>Delete</button>
-                        </div>
-                      }
-
-                      <div>
-                        <button className="add-btn" onClick={() => handleAddtoCart(list)}><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to Cart</button>
-                        <button className="buy" onClick={()=>handleBuyNow(list)}><i class="fa fa-bolt" aria-hidden="true"></i> Buy Now</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              })
-            }
-
-</div>
-</div>     }  
-                
-        
+      }
 
 
 
-        <Modal isOpen={Deletemodal} toggle={() => setDeletemodal(!Deletemodal)}>
-          <ModalHeader> Delete Confirmation</ModalHeader>
-          <ModalBody>
-            <div className="container">
-              <p>
-                Are you sure want to Delete this product?
-              </p>
-              <div>
-                <button className="btn btn-success mx-2" onClick={() => deleteproduct()}>Yes</button>
 
-                <button className="btn btn-danger" onClick={() => cancelDelete()}>No</button>
-              </div>
+
+      <Modal isOpen={Deletemodal} toggle={() => setDeletemodal(!Deletemodal)}>
+        <ModalHeader> Delete Confirmation</ModalHeader>
+        <ModalBody>
+          <div className="container">
+            <p>
+              Are you sure want to Delete this product?
+            </p>
+            <div>
+              <button className="btn btn-success mx-2" onClick={() => deleteproduct()}>Yes</button>
+
+              <button className="btn btn-danger" onClick={() => cancelDelete()}>No</button>
             </div>
-          </ModalBody>
-        </Modal>
+          </div>
+        </ModalBody>
+      </Modal>
 
-      </div >
-      );
+    </div >
+  );
 }
 
 export default Products;

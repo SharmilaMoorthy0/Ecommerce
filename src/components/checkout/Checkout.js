@@ -55,10 +55,10 @@ function CheckOut({}) {
 
  
   return (
-    <div className="container">
+    <div className="container ">
       <div className="row mt-4">
-        <div className="col-lg-6  col-md-6 col-sm-12 left-cart">
-          <div className="container w-50 m-auto">
+        <div className="col-lg-6 address col-md-6 col-sm-12 left-cart">
+          <div className="container w-75 mx-auto">
             <div className="row">
               <div className="col-12">
                 <div class="mb-3">
@@ -81,13 +81,13 @@ function CheckOut({}) {
                   />
                 </div>
               </div>
-              <div className="col-6">
+              <div className="col-lg-6 col-sm-12 col-md-6">
                 <div class="mb-3">
                   <label class="form-label">Expiry Date</label>
                   <input type="date" class="form-control" placeholder="MM/YY" />
                 </div>
               </div>
-              <div className="col-6">
+              <div className="col-lg-6 col-sm-12 col-md-6">
                 <div class="mb-3">
                   <label class="form-label">CCV</label>
                   <input
