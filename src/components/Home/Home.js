@@ -2,7 +2,7 @@ import React from 'react'
 import './home.css'
 import img1 from '../Images/plants.jpg'
 import img2 from '../Images/img4.jpg'
-import img6 from '../Images/img6.jpg'
+import img6 from '../Images/img.jpg'
 
 
 function Home() {

@@ -66,6 +66,10 @@ function Products({ }) {
     localStorage.setItem('cart', JSON.stringify(data))
     navigate('/cart')
   }
+  const ImageClick=(data)=>{
+    localStorage.setItem('cart', JSON.stringify(data))
+    navigate('/cart')
+  }
 
 
 
@@ -197,7 +201,7 @@ function Products({ }) {
             : products.map((list) => (
               <div className="col-sm-12 col-md-6 col-lg-3 my-3" key={list._id}>
                 <div className=" product-card">
-                  <img src={list.Image} className="card-img-top" alt={list.productName} />
+                  <img src={list.Image} className="card-img-top" alt={list.productName} onClick={()=>ImageClick(list)}/>
                   <div className="card-body">
                     <p className="card-title">{list.productName}</p>
                     <div>
