@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './components/Home/Home';
 
 import Header from './components/Header/Header';
-import About from './components/About/About';
+
 import Product from './components/product/Product';
 import Contact from './components/Contact/Contact';
 import Cartitem from './components/Cart/CartItem'
@@ -59,7 +59,7 @@ useEffect(()=>{
 <Routes>
     <Route path='/' element={<Home/>}/>
     <Route path='/mobile/nav' element={<MobileNav  setCartData={setCartData} />}/>
-    <Route path='/about' element={<About/>}/>
+    {/* <Route path='/about' element={<About/>}/> */}
     <Route path='/product' element={<Product  cartData={cartData} setCartData={setCartData}/>}/>
     <Route path='/contact' element={<Contact/>}/>
    

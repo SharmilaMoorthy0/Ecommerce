@@ -35,15 +35,17 @@ function MobileNav({ isopen, togglemenu, setCartData }) {
 
     <div className={`mobile-menu ${isopen ? "active" : ""}`}
       onClick={togglemenu} 
+    
     >
+      
       <div className='mobile-menu-container '>
 
-      <button className='menu_btn d-lg-none d-md-none d-sm-block ' onClick={togglemenu}>
-      {isopen ?<i class="fa fa-times" aria-hidden="true"></i> : "" }</button>
+      <a className=' d-lg-none d-md-none d-sm-block ' onClick={togglemenu}>
+      {isopen ?<i class="fa fa-times text-success fa-1x" aria-hidden="true"></i> : "" }</a>
         <ul>
           <li> <a className="menu_item " href='/'> Home</a></li>
-          <li><a className="menu_item " href='/About'> About</a></li>
-          <li><a className="menu_item" href='/product'> Product</a></li>
+          {/* <li><a className="menu_item " href='/About'> About</a></li> */}
+          <li><a className="menu_item" href='/product'> Shop</a></li>
           <li><a className="menu_item" href='/contact'> contact</a></li>
           <li><a className="menu_item" href='/order'> Order</a></li>
          

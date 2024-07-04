@@ -53,12 +53,12 @@ function Header({ setCartData, fetchCartData, CartData }) {
               <li class="nav-item">
                 <a class="nav-link active" href="/">Home</a>
               </li>
-              <li class="nav-item">
+              {/* <li class="nav-item">
                 <a class="nav-link active" href="/about">About</a>
-              </li>
+              </li> */}
 
               <li class="nav-item">
-                <a class="nav-link active" href="/product">Products</a>
+                <a class="nav-link active" href="/product">Shop</a>
               </li>
 
               <li class="nav-item">
@@ -95,8 +95,8 @@ function Header({ setCartData, fetchCartData, CartData }) {
 
               
              </div>
-             <button className="menu_btn d-lg-none d-md-none d-sm-block " onClick={togglemenu}>
-             {openmenu ?"" : <i class="fa fa-bars" aria-hidden="true"></i>} </button>
+             <a className=" d-lg-none d-md-none d-sm-block " onClick={togglemenu}>
+             {openmenu ?"" : <i class="fa fa-bars fa-1x text-success" aria-hidden="true"></i>} </a>
           </div>
 
         </div>

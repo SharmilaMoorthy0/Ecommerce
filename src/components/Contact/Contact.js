@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import img from '../Images/img1.jpg'
+import img from '../Images/contact.jpg'
 import './contact.css'
 import axios from 'axios'
 import toast from 'react-hot-toast'
@@ -39,7 +39,7 @@ function Contact() {
       <div className='container box'>
         <div className='row align-items-center'>
           <div className='col-sm-12 col-md-12 col-lg-6' >
-            <img src={img} width={"900px"} className='img-fluid' />
+            <img src={img} width={"450px"} className='img-fluid' />
           </div>
           <div className='col-sm-12 col-md-12 col-lg-6'>
             <h1>CONTACT US</h1>

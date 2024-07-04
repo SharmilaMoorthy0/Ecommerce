@@ -43,7 +43,7 @@ function AddToCart(cartData, setCartData) {
     return (
         <div className="container mt-3 single-product">
 
-            <div className="row ">
+            <div className="row align-items-center">
                 <div className="col-sm-12 col-md-6 col-lg-6 my-3">
                     <img src={carts?.Image} className="img-fluid "width={"600"} height={"100"} />
                 </div>
@@ -60,6 +60,7 @@ function AddToCart(cartData, setCartData) {
                     </div>
                     <p className=''>{carts?.Description}</p>
                     <button className="add-btn" onClick={() => handleAddtoCart(carts)}><i class="fa fa-cart-plus" aria-hidden="true"></i> Add to Cart</button>
+                   
                 </div>
 
                
