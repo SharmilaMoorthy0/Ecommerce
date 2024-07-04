@@ -56,6 +56,7 @@ function Login({ toggleSignUp, closeLogin }) {
                 localStorage.setItem("userData", JSON.stringify(res.data.user))
                 createLoginCart()
                 closeLogin()
+                navigate('product')
             }
             if (res.data.status === 0) {
                 toast.error(res.data.message)

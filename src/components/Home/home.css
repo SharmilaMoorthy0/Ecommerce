@@ -42,16 +42,42 @@ img{
     box-shadow: 2px 4px 5px rgba(0,0,0,0.3);
 
 }
+.start{
+  padding: 10px 20px;
+ background-color: #29f700;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  font-Size: 16px;
+  cursor: pointer;
+}
+.start:hover{
+  background-color: #20a997;
+}
+.flower{
+  font-size: 100px;
+  color: #fff;
+  letter-spacing: 3px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-transform: uppercase;
+  text-shadow: 0px 0px 0px #CCC,
+      0px 2px 0px #CCC,
+      0px 3px 0px #CCC,
+      0px 4px 0px #CCC,
+      0px 5px 0px #CCC,
+      0px 6px 0px #CCC,
+      0px 7px 0px #CCC;
+}
 @media (max-width:480px){
     #HomeSection h1 {
-        font-size: 70px;
+        font-size: 62px;
         color: #fff;
         letter-spacing: 1px;
         font-family: Verdana, Geneva, Tahoma, sans-serif;
         text-transform: uppercase;
         align-items: center;
         justify-content: center;
-        margin-top: 70px;
+        margin-top: 50px;
         text-shadow: 0px 0px 0px #CCC,
             0px 2px 0px #CCC,
             0px 3px 0px #CCC,
@@ -71,4 +97,5 @@ img{
     img{
         object-fit: cover;
     }
+    
 }

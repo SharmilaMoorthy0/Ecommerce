@@ -3,9 +3,11 @@ import './home.css'
 import img1 from '../Images/plants.jpg'
 import img2 from '../Images/img4.jpg'
 import img6 from '../Images/img.jpg'
+import { useNavigate } from 'react-router-dom'
 
 
 function Home() {
+  const navigate=useNavigate()
   return (
     // <div className='HomeSection ' id='HomeSection'>
     //   <h1 className='text-center'>Naturtal plants</h1>
@@ -29,7 +31,7 @@ function Home() {
               <div className='HomeSection ' id='HomeSection'>
                 <h1 className='text-center'>Naturtal plants</h1>
                 <p>Plants Make People Happy.</p>
-
+                <button className='start' onClick={()=>navigate('/product')}>Get's Start</button>
               </div>
 
             </div>
@@ -40,6 +42,7 @@ function Home() {
             <div className='HomeSection ' id='HomeSection'>
                 <h1 className='text-center'>Indoor and outdoor plants</h1>
                 <p>Plants Make People Happy.</p>
+                <button className='start' onClick={()=>navigate('/product')}>Get's Start</button>
 
               </div>
             </div>
@@ -48,8 +51,9 @@ function Home() {
             <img src={img6} class="d-block w-100 img-style1" alt="..." width="100%" height="700px" />
             <div class="carousel-caption d-sm-block d-md-block">
             <div className='HomeSection ' id='HomeSection'>
-                <h1 className='text-center'>Naturtal plants</h1>
+                <h1 className='text-center flower'>Flowering Plants</h1>
                 <p>Plants Make People Happy.</p>
+                <button className='start' onClick={()=>navigate('/product')}>Get's Start</button>
 
               </div>
             </div>
